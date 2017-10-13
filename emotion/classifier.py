@@ -28,12 +28,12 @@ class PosNegClassifier:
     def predict(self, text):
         """
         Args:
-            text (str): 原型で分かち書きされた文
+            text (str): 原形で分かち書きされた文
 
         Returns:
-            int:
-            ポジティブであれば正の値を、ネガティブであれば負の値を、ニュートラルであれば
-            0 を返す。絶対値が大きいほど、程度が大きいことを表す
+            int: 次の計算式で表されるスコアを返す
+
+                (ポジティブである単語数 - ネガティブである単語数) / 単語数
         """
 
         words = text.split(" ")
@@ -48,4 +48,4 @@ class PosNegClassifier:
                     score += 1
                 elif _label == "n":
                     score -= 1
-        return score
+        return score / len(words)

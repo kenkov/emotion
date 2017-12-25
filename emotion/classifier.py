@@ -21,14 +21,12 @@ class DictionaryLoader:
             if len_word > longest_word_len:
                 longest_word_len = len_word
 
-        return Dictionary(word2label=word_label_dic,
-                          label2words=label_word_dic)
+        return Dictionary(word2label=word_label_dic)
 
 
 class Dictionary:
-    def __init__(self, word2label, label2words):
+    def __init__(self, word2label):
         self._w2l = word2label
-        self._l2ws = label2words
         self._longest_word_len = max(len(word.split(" "))
                                      for word in self._w2l)
 
@@ -39,10 +37,6 @@ class Dictionary:
     @property
     def word2label(self):
         return self._w2l
-
-    @property
-    def label2words(self):
-        return self._l2ws
 
 
 class PosNegClassifier:
